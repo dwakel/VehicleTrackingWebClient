@@ -1,0 +1,24 @@
+<h2>Login</h2>
+
+<form [formGroup]="_form">
+ 
+    <div>
+        <label for="username">Username</label>
+        <input name="username" type="text" formControlName="username" />
+        <div >
+            <div >Username is required</div>
+        </div>
+    </div>
+    <div>
+        <label for="password">Password</label>
+        <input name="password" type="password" formControlName="password" />
+        <div>
+            <div>Password is required</div>
+        </div>
+    </div>
+  <div>
+      <button (click)="login()">Login</button>
+      
+  </div>
+  
+</form>
