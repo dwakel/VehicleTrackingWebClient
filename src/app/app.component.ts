@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { LocationHubService } from './_services/location-hub.service';
 import { Subscription } from 'rxjs';
 import { Coordinate } from './_models/Coordinate';
-import { } from '@types/googlemaps';
+import { } from 'googlemaps';
 
 @Component({
   selector: 'app-root',
@@ -13,11 +13,13 @@ export class AppComponent implements AfterViewInit {
   title = 'WebClient';
   latitude: any;
   longitude: any;
+  latt: string;
+  lonn: string;
   constructor(private location: LocationHubService) {
-    this.latitude = 56.34532;
-    this.longitude = -11.54354;
+    this.latitude = 5.759553;
+    this.longitude = -0.220318;
 
-   }
+  }
 
   coordinates: Coordinate[] = [];
   public fName: string;
@@ -33,6 +35,9 @@ export class AppComponent implements AfterViewInit {
           // this.coordinates.push(loc);
           this.latitude = loc.latitude;
           this.longitude = loc.longitude;
+          this.latt = loc.latitude;
+          this.lonn = loc.longitude;
+          this.setCenter();
         });
         let mapProp = {
           center: new google.maps.LatLng(
@@ -44,25 +49,25 @@ export class AppComponent implements AfterViewInit {
         };
 
     this.map = new google.maps.Map(this.gmapElement.nativeElement, mapProp);
-    // this.setCenter();
+    this.setCenter();
   }
 
 
-  // setCenter() {
-  //   this.map.setCenter(new google.maps.LatLng(
-  //     this.latitude,
-  //     this.longitude));
+  setCenter() {
+    this.map.setCenter(new google.maps.LatLng(
+      this.latitude,
+      this.longitude));
 
-  //   let theLocation = new google.maps.LatLng(
-  //     this.latitude,
-  //     this.longitude);
+    let theLocation = new google.maps.LatLng(
+      this.latitude,
+      this.longitude);
 
-  //   let marker = new google.maps.Marker({
-  //     position: theLocation,
-  //     map: this.map,
-  //     title: 'Got you!'
-  //   });
+    let marker = new google.maps.Marker({
+      position: theLocation,
+      map: this.map,
+      title: 'Got you!'
+    });
 
-// }
+  }
 
 }
