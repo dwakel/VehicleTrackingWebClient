@@ -45,6 +45,7 @@ export class AppComponent implements AfterViewInit {
           this.longitude = loc.longitude;
           this.latt = loc.latitude;
           this.lonn = loc.longitude;
+          this.deleteLocationMarker();
           this.setLocationMarker();
           this.statusMessage = this.calculateDistanceVoilation();
         });
@@ -66,7 +67,6 @@ export class AppComponent implements AfterViewInit {
     }
   }
 
-
   setCenter() {
     this.map.setCenter(new google.maps.LatLng(
       this.latitude,
@@ -80,6 +80,17 @@ export class AppComponent implements AfterViewInit {
     let marker = new google.maps.Marker({
       position: theLocation,
       map: this.map,
+      title: 'Current location'
+    });
+  }
+  deleteLocationMarker() {
+    let theLocation = new google.maps.LatLng(
+      this.latitude,
+      this.longitude);
+
+    let mark = new google.maps.Marker({
+      position: null,
+      map: null,
       title: 'Current location'
     });
   }

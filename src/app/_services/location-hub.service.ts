@@ -16,7 +16,7 @@ export class LocationHubService {
     if (!this.connection) {
       this.connection = new signalR.HubConnectionBuilder()
       .withUrl(CONFIGURATION.baseUrls.server +
-          'location')// { accessTokenFactory: () => accessToken })
+          'location')
       .build();
 
       this.connection.start().then(() => {
@@ -28,8 +28,6 @@ export class LocationHubService {
         console.log('Received', latitude, longitude);
         this.locationCordinates.next({ latitude, longitude });
       });
-
-      // this.connection.start().catch(err => console.log(err));
      }
   }
 
